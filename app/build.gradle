@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.lee.greendaodemo"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        greendao {
+            /**
+             * app数据库版本
+             * 如果调整数据对应实体类字段，可对应修改此schemaVersion值来实现数据库升级流程，以使新调整的字段生效
+             */
+            schemaVersion 1
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+    compile 'org.greenrobot:greendao:3.2.2'
+
+    compile googleSupport('25.3.1')
+}
+
+def googleSupport(version) {
+    [
+            "com.android.support:appcompat-v7:$version",
+            "com.android.support:recyclerview-v7:$version",
+            "com.android.support:cardview-v7:$version",
+    ]
+}
