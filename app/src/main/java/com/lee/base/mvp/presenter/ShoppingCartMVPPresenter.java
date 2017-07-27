@@ -35,6 +35,7 @@ public class ShoppingCartMVPPresenter extends MVPBasePresenter<ShoppingCartMVPIn
         String msg = null;
 
         if (shoppingCartDataList == null || shoppingCartDataList.size() == 0) {
+            Log.d(TAG, "updateShoppingCart------> empty");
             long rect = 0L;
             try {
                 rect = shoppingCartDataDao.insert(shoppingCartData);
@@ -47,6 +48,7 @@ public class ShoppingCartMVPPresenter extends MVPBasePresenter<ShoppingCartMVPIn
                 result = false;
             }
         } else {
+            Log.d(TAG, "updateShoppingCart------> update");
             try {
                 shoppingCartDataDao.update(shoppingCartData);
                 result = true;

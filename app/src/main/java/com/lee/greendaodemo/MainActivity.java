@@ -10,8 +10,6 @@ import com.lee.mvp.inter.ShoppingCartMVPInter;
 import com.lee.shoppingcart.bean.ShoppingCartData;
 import com.lee.shoppingcart.bean.ShoppingCartDataDao;
 
-import java.util.Date;
-
 import butterknife.OnClick;
 
 public class MainActivity extends MVPBaseActivity<ShoppingCartMVPInter, ShoppingCartMVPPresenter>
@@ -38,7 +36,8 @@ public class MainActivity extends MVPBaseActivity<ShoppingCartMVPInter, Shopping
         ShoppingCartDataDao shoppingCartDataDao = ((MyApplication) getApplication()).getShoppingCartDataDao();
         switch (v.getId()) {
             case R.id.update_shoppingCartData_button: {
-                mPresenter.updateShoppingCart(shoppingCartDataDao, new ShoppingCartData(123456L, "MacBook Pro", 1, new Date(), "13500"));
+                mPresenter.updateShoppingCart(shoppingCartDataDao, new ShoppingCartData(123456L,
+                        "MacBook Pro", 1, System.currentTimeMillis(), "13500"));
                 break;
             }
             case R.id.del_shoppingCartData_by_entity_button: {
